@@ -1,24 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { PreloginModule } from './prelogin/prelogin.module';
+import { CommonModule } from '@angular/common';
+import { LoginComponent } from './login/login.component';
 import { HttpClientModule ,HTTP_INTERCEPTORS} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatNativeDateModule,MatIconModule,MatButtonModule, MatTableModule,
   MatCheckboxModule, MatToolbarModule, MatCardModule,MatFormFieldModule,MatInputModule,
   MatRadioModule,MatListModule,MatSelectModule} from  '@angular/material';
 import {MatDatepickerModule} from  '@angular/material/datepicker';
-import { LayoutModule } from './layout/layout.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { LayoutModule } from '../layout/layout.module';
+import { RegisterComponent } from './register/register.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [LoginComponent, RegisterComponent, ForgetPasswordComponent],
   imports: [
+    CommonModule,
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -36,11 +34,7 @@ import { LayoutModule } from './layout/layout.module';
     MatListModule,
     MatRadioModule,
     MatSelectModule,
-    AppRoutingModule,
-    PreloginModule,
     LayoutModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  ]
 })
-export class AppModule { }
+export class PreloginModule { }

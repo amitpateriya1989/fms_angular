@@ -1,0 +1,73 @@
+<app-header></app-header>
+<app-nav-bar></app-nav-bar>
+<div class="container" style="margin-top:25px;margin-bottom:25px;">
+      <div class="wrapper fadeInDown">
+        <div id="formContent">
+           
+          
+	<form class="my-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off">
+      <mat-card class="my-card" >
+		<mat-card-content>
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <br>
+            <h5 align="center"> <mat-label>Login Here</mat-label></h5>
+            <hr>
+          </div>
+			   <!--FORM FIELDS HERE-->
+         <mat-form-field class="full-width">
+					<mat-icon matSuffix>lock</mat-icon>
+					
+						<input type="text" matInput  placeholder="Enter your user id" name="userId"   formControlName="userId"  maxlength="10">
+					  <mat-error *ngIf="loginForm.controls.userId.hasError('required')">
+                User Id is required
+            </mat-error>
+           
+        </mat-form-field>
+  
+        <br> 
+				<div class="example-container">
+				<mat-form-field >
+				  <input matInput placeholder="Enter your password" name="password" [type]="hide ? 'password' : 'text'" formControlName="userPwd"  >
+				  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+				  <mat-error *ngIf="loginForm.controls.userPwd.hasError('required')">
+            Password field is required
+        </mat-error>
+       
+      </mat-form-field>
+      <div *ngIf="invalidLogin" class="error">
+          <div>{{loginMessage}}</div>
+        </div>
+
+</div>
+
+  </mat-card-content>
+  <br>
+  <mat-card-actions>
+  <button  mat-raised-button color="primary" style="width:120px" >Log In</button>
+  
+</mat-card-actions>
+</mat-card>
+   </form>
+<!-- Remind Passowrd -->
+<div id="formFooter">
+ <!--  <a class="underlineHover" id="forgot" routerLinkActive="active" routerLink="/forget-password" >Forgot Password?</a>
+  &nbsp;&nbsp;
+  <a class="underlineHover" id="register" routerLinkActive="active" routerLink="/register">Register</a> -->
+ <!--  &nbsp;&nbsp;
+  <a routerLink="/bill-Payment">Online Bill Payment</a> -->
+</div>
+ 
+
+</div>
+</div>
+<!-- <ngx-spinner
+bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+type="ball-scale-multiple">
+<p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner> -->
+</div>
+<app-footer></app-footer>
