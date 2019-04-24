@@ -16,7 +16,11 @@ export class LoginComponent implements OnInit {
   invalidLogin: boolean = false;
   isLoggedIn: boolean = false;
   loginMessage;
-  constructor(private formBuilder: FormBuilder, private router: Router,private loginService:LoginService) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private router: Router,
+    private loginService:LoginService
+    ) { }
 
   onSubmit() {
     this.submitted = true;
@@ -24,9 +28,11 @@ export class LoginComponent implements OnInit {
       return;
     }
    
-this.loginService.loginVerification(this.loginForm.value).subscribe(data=>{
+/* this.loginService.loginVerification(this.loginForm.value).subscribe(data=>{
 console.log(data);
-});
+}); */
+
+this.router.navigate(['dashboard']);
   }
 
   ngOnInit() {
