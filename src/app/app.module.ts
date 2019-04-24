@@ -12,9 +12,11 @@ import {MatNativeDateModule,MatIconModule,MatButtonModule, MatTableModule,
   MatRadioModule,MatListModule,MatSelectModule} from  '@angular/material';
 import {MatDatepickerModule} from  '@angular/material/datepicker';
 import { LayoutModule } from './layout/layout.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
