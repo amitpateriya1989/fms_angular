@@ -1,0 +1,143 @@
+<app-header></app-header>
+<app-nav-bar></app-nav-bar>
+<br>
+  <div class="container">
+      <div class="container;" >
+  
+          <div class="row" >
+              <div class=" col-sm-2" ></div>
+            <div class=" col-sm-8" >
+  
+  
+                <mat-card class="my-card">
+               <form [formGroup]="substation"  autocomplete="off" >
+  
+            
+  
+                 <mat-card-content>
+                  <div class="row" >
+                      <div class=" col-sm-2" ></div>
+                      <div class="col-md-8" >
+                        <div class="heading-line-top" >
+  
+                          <h4 class="heading-title"align="center">
+                            <b>Add Substation </b>
+                          </h4>
+  
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <mat-form-field class="full-width">
+                            <mat-label>Zone Name</mat-label>
+                            <mat-select placeholder="Choose one" formControlName="zoneCode" required>
+            
+                              <mat-option value="1">1</mat-option>
+                              <mat-option value="2">2</mat-option>
+                              <mat-option value="3">3</mat-option>
+                              <mat-option value="4">4</mat-option>
+                              <mat-option value="5">5</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="substation.controls.zoneCode.hasError('required')">
+                              You must make a selection
+                            </mat-error>
+            
+                        </mat-form-field><br>
+                        <mat-form-field class="full-width">
+                            <mat-label>Substation Name</mat-label>
+                              <input  matInput  placeholder="Enter Substation Name" size="40" name="substationName" required formControlName="substationName">
+                              <mat-error *ngIf="substation.controls.substationName.hasError('required')">
+                                  Substation Name is required
+                              </mat-error>
+  
+                          </mat-form-field>
+                          <br>
+                          <mat-form-field class="full-width">
+                              <mat-label>Substation Code</mat-label>
+                                <input  matInput  placeholder="Enter Substation Code" size="40" name="substationCode" required formControlName="substationCode">
+                                <mat-error *ngIf="substation.controls.substationCode.hasError('required')">
+                                    Substation Code is required
+                                </mat-error>
+    
+                            </mat-form-field>
+                            <br>
+                                                      
+                            <mat-form-field class="full-width">
+                            <mat-label>Power Transformer</mat-label>
+                            <mat-select placeholder="Choose one" formControlName="powerTransformer" required>
+  
+                              <mat-option value="1">1</mat-option>
+                              <mat-option value="2">2</mat-option>
+                              <mat-option value="3">3</mat-option>
+                              <mat-option value="4">4</mat-option>
+                              <mat-option value="5">5</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="substation.controls.powerTransformer.hasError('required')">
+                              You must make a selection
+                            </mat-error>
+  
+                        </mat-form-field>
+                   <br>
+                   <mat-form-field class="full-width">
+                      <mat-label>Incomming Line</mat-label>
+                      <mat-select placeholder="Choose one" formControlName="incommingLine" required (ngModelChange)="addFeeder()">
+
+                        <mat-option value="1">1</mat-option>
+                        <mat-option value="2">2</mat-option>
+                        <mat-option value="3">3</mat-option>
+                        <mat-option value="4">4</mat-option>
+                        <mat-option value="5">5</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="substation.controls.incommingLine.hasError('required')">
+                        You must make a selection
+                      </mat-error>
+
+                  </mat-form-field>
+             <br>
+             <div formGroupName="itemRows">
+              <ng-container *ngIf='substation.controls.itemRows!=null'>
+                  <div *ngFor="let itemrow of substation.controls.itemRows.controls;let i=index" [formGroupName]="i">
+                      <mat-form-field class="full-width" *ngIf="addLines">
+                          <mat-label>Feeder Name</mat-label>
+
+                            <input  matInput  placeholder="Enter Feeder Name" name="name" required 
+                            formControlName="name" >
+                         
+                       </mat-form-field>
+                      
+                    </div>
+              </ng-container>
+            </div>
+             
+                   <div align="center">
+                 <mat-card-actions>
+  
+                  <button mat-raised-button color="primary"  >Submit</button>&nbsp;&nbsp;&nbsp;
+  
+                    <button mat-raised-button  color="warn"  type="button" >Reset</button>&nbsp;&nbsp;&nbsp;
+  
+                    <button mat-raised-button  color="accent"  type="button"  (click)="back()" >Back</button>
+  
+                  </mat-card-actions>
+                </div>
+                </div>
+              </div>
+            </mat-card-content>
+            </form>
+            </mat-card>
+            </div>
+            </div>
+            </div>
+            </div>
+  
+  
+           <!--  <ngx-spinner
+            bdColor="rgba(51,51,51,0.8)"
+            size="medium"
+            color="#fff"
+            type="ball-scale-multiple">
+           <p style="font-size: 20px; color: white">Loading...</p>
+          </ngx-spinner> --><br>
+   <app-footer></app-footer>

@@ -28,16 +28,17 @@ export class LoginComponent implements OnInit {
       return;
     }
    
-/* this.loginService.loginVerification(this.loginForm.value).subscribe(data=>{
+this.loginService.loginVerification(this.loginForm.value).subscribe(data=>{
 console.log(data);
-}); */
-
 this.router.navigate(['dashboard']);
+}); 
+
+
   }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      userId: ['', [Validators.required]],
+      userName: ['', [Validators.required]],
       userPwd: ['', [Validators.required]]
     });
 

@@ -13,6 +13,7 @@ import {MatNativeDateModule,MatIconModule,MatButtonModule, MatTableModule,
 import {MatDatepickerModule} from  '@angular/material/datepicker';
 import { LayoutModule } from './layout/layout.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SubstationModule } from './substation/substation.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatSelectModule,
     AppRoutingModule,
     PreloginModule,
-    LayoutModule
+    LayoutModule,
+    SubstationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
