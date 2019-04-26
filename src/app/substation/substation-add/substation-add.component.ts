@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators,FormControl,FormArray } from '@angul
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
+import { ZoneService } from 'src/app/services/zone.service';
+import { Zone } from 'src/app/model/zone.model';
 @Component({
   selector: 'app-substation-add',
   templateUrl: './substation-add.component.html',
@@ -12,9 +14,11 @@ export class SubstationAddComponent implements OnInit {
   substation:FormGroup;
   TotalRow:number;
   addLines=false;
+  zones:Zone[];
   constructor(
     private formBuilder: FormBuilder,
-    private router:Router
+    private router:Router,
+    private zoneService:ZoneService
     ) { }
 
   ngOnInit() {
@@ -28,7 +32,11 @@ export class SubstationAddComponent implements OnInit {
      
       
     });
-
+     
+    this.zoneService.getAllZone().subscribe(data=>{
+      this.zones=data;
+      console.log(this.zones);
+    });
   }
   initItemRow(){
     return this .formBuilder.group({

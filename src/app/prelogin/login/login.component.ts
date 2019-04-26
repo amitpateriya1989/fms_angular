@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { Login } from 'src/app/model/login.model';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   submitted: boolean = false;
   invalidLogin: boolean = false;
   isLoggedIn: boolean = false;
+  user:User=new User();
   loginMessage;
   constructor(
     private formBuilder: FormBuilder, 
@@ -27,9 +29,13 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-   
+    sessionStorage.removeItem("user");
 this.loginService.loginVerification(this.loginForm.value).subscribe(data=>{
-console.log(data);
+  this.user.id=data["id"];
+  this.user.userName=data["userName"];
+  this.user.role=data["role"];
+console.log(this.user);
+  sessionStorage.setItem("user",JSON.stringify(this.user));
 this.router.navigate(['dashboard']);
 }); 
 
@@ -39,7 +45,7 @@ this.router.navigate(['dashboard']);
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       userName: ['', [Validators.required]],
-      userPwd: ['', [Validators.required]]
+      password: ['', [Validators.required]]
     });
 
    

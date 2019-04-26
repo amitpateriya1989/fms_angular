@@ -29,9 +29,9 @@
         <br> 
 				<div class="example-container">
 				<mat-form-field >
-				  <input matInput placeholder="Enter your password" name="password" [type]="hide ? 'password' : 'text'" formControlName="userPwd"  >
+				  <input matInput placeholder="Enter your password" name="password" [type]="hide ? 'password' : 'text'" formControlName="password"  >
 				  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-				  <mat-error *ngIf="loginForm.controls.userPwd.hasError('required')">
+				  <mat-error *ngIf="loginForm.controls.password.hasError('required')">
             Password field is required
         </mat-error>
        

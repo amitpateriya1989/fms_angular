@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { timeout } from 'rxjs/operators';
 import { GenerateUrl } from '../model/generate-url.model';
 import { Login } from '../model/login.model';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class LoginService {
   constructor(private http: HttpClient,private url:GenerateUrl) { }
 
  loginVerification(login: Login):Observable<any> {
-    return this.http.post<Response>(this.baseUrl, login);
+    return this.http.post<User>(this.baseUrl, login);
   }
 
  

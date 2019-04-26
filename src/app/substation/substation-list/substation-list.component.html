@@ -32,13 +32,13 @@
     </tr>
     </thead>
     <tbody >
-      <tr >
-      <td class="hidden"></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <tr *ngFor="let substation of substationList; let i = index">
+        <td class="hidden">{{i + 1}}</td>
+      <td>{{substation.substationName}}</td>
+      <td>{{substation.substationCode}}</td>
+      <td>{{substation.powerTransformer}}</td>
+      <td>{{substation.incomingLines}}</td>
+      <td>{{substation.zoneId}}</td>
       
       <td>
           <div class="example-button-row">
