@@ -14,7 +14,7 @@ export class LoginService {
   constructor(private http: HttpClient,private url:GenerateUrl) { }
 
  loginVerification(login: Login):Observable<any> {
-    return this.http.post<Response>(this.baseUrl + "/verification", login).pipe(timeout(5000));
+    return this.http.post<Response>(this.baseUrl, login);
   }
 
  

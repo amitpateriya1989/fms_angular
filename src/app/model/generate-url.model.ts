@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class GenerateUrl {
      //baseUrl :string= 'https://services.mpcz.in/serviceportal';
     //baseUrl: string = 'https://rooftop-uat.mpcz.in:8443/serviceportal';
-    baseUrl: string = 'http://localhost:8080/fms';
-	loginServiceUrl:string=this.baseUrl+'/api/loginController';
+    baseUrl: string = 'http://localhost:8080';
+	loginServiceUrl:string=this.baseUrl+'/user';
    
 }
