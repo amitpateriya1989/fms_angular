@@ -14,13 +14,15 @@ import {MatDatepickerModule} from  '@angular/material/datepicker';
 import { LayoutModule } from './layout/layout.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SubstationModule } from './substation/substation.module';
+import { FeederModule } from './feeder/feeder.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent
   ],
   imports: [
-    
+    NgxSpinnerModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -43,7 +45,8 @@ import { SubstationModule } from './substation/substation.module';
     AppRoutingModule,
     PreloginModule,
     LayoutModule,
-    SubstationModule
+    SubstationModule,
+    FeederModule
   ],
   providers: [],
   bootstrap: [AppComponent]

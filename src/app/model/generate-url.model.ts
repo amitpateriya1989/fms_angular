@@ -9,5 +9,6 @@ export class GenerateUrl {
     baseUrl: string = 'http://localhost:8080';
 	loginServiceUrl:string=this.baseUrl+'/user';
   locationServiceUrl:string=this.baseUrl+'/location';
-  substationServiceUrl:string=this.baseUrl+'/substation' 
+  substationServiceUrl:string=this.baseUrl+'/substation';
+  feedeerServiceUrl:string=this.baseUrl+'/feeder'
 }

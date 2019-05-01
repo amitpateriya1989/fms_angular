@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { Login } from 'src/app/model/login.model';
 import { User } from 'src/app/model/user.model';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder, 
     private router: Router,
-    private loginService:LoginService
+    private loginService:LoginService,
+    private spinner: NgxSpinnerService
     ) { }
 
   onSubmit() {
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    this.spinner.show();
     sessionStorage.removeItem("user");
 this.loginService.loginVerification(this.loginForm.value).subscribe(data=>{
   this.user.id=data["id"];
@@ -36,6 +39,8 @@ this.loginService.loginVerification(this.loginForm.value).subscribe(data=>{
   this.user.role=data["role"];
 console.log(this.user);
   sessionStorage.setItem("user",JSON.stringify(this.user));
+  sessionStorage.setItem("isLoggedIn",JSON.stringify(true));
+  this.spinner.hide();
 this.router.navigate(['dashboard']);
 }); 
 

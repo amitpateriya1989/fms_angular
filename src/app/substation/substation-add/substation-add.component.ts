@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
 import { ZoneService } from 'src/app/services/zone.service';
 import { Zone } from 'src/app/model/zone.model';
+import { SubstationService } from 'src/app/services/substation.service';
 @Component({
   selector: 'app-substation-add',
   templateUrl: './substation-add.component.html',
@@ -18,7 +19,8 @@ export class SubstationAddComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router:Router,
-    private zoneService:ZoneService
+    private zoneService:ZoneService,
+    private subStationService:SubstationService
     ) { }
 
   ngOnInit() {
@@ -26,9 +28,9 @@ export class SubstationAddComponent implements OnInit {
       substationName:['',[Validators.required]],
       substationCode:['',[Validators.required]],
       powerTransformer:['',[Validators.required]],
-      incommingLine:['',[Validators.required]],
-      zoneCode:['',[Validators.required]],
-      itemRows:this.formBuilder.array([this.initItemRow()])
+      incomingLines:['',[Validators.required]],
+      zoneId:['',[Validators.required]],
+      substationFeederInterface:this.formBuilder.array([this.initItemRow()])
      
       
     });
@@ -40,43 +42,49 @@ export class SubstationAddComponent implements OnInit {
   }
   initItemRow(){
     return this .formBuilder.group({
-      name:['']
+      substationFeederName:['']
     })
     
   }
   back(){
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['substation-list']);
   }
   addNewRow(){
-    const control=<FormArray>this.substation.controls['itemRows'];
-    console.log("add:"+control.value.length);
+    const control=<FormArray>this.substation.controls['substationFeederInterface'];
     control.push(this.initItemRow());
-
+    
   }
   deleteRow(){
     this.addLines=false;
-    const control=<FormArray>this.substation.controls['itemRows'];
-    if(control!=null){
+    const control=<FormArray>this.substation.controls['substationFeederInterface'];
+     if(control!=null){
       this.TotalRow= control.value.length;
-      console.log("delete:"+this.TotalRow);
-    }
-    
-    var i:number=0;
-    for (i;i<=this.TotalRow;i++){
-      control.removeAt(i);
-    }
-  
-    
+   }
+      var i:number=0;
+      for (i;i<=this.TotalRow;i++){
+        control.removeAt(0);
+      }
   }
- 
- 
-  addFeeder(){
+    
+  addFeederIncomingLines(){
     this.deleteRow();
     this.addLines=true;
-    var i:number=1;
-  
-    for(i;i<this.substation.value.incommingLine;i++){
+    var i:number=0;
+    for(i;i<this.substation.value.incomingLines;){
       this.addNewRow();
+      i++;
     }
+   
+  }
+  
+  reset(){
+    this.substation.reset();
+}
+
+  onSubmit(){
+  this.subStationService.saveSubStation(this.substation.value).subscribe(data=>{
+    this.router.navigate(['substation-list']);
+  })
+   
   }
 }

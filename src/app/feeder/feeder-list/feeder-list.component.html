@@ -1,0 +1,57 @@
+
+<app-header></app-header>
+<app-nav-bar></app-nav-bar>
+
+  <div class="container" style="margin-top: 50px;margin-bottom: 50px">
+    <mat-card class="my-card">
+        <mat-card-content>
+<div class="row" style="margin-top:10px">
+  <div class="col-md-12" align="center">
+    <h2> Feeder Details</h2>
+  </div>
+</div>
+
+<div class="row">
+
+
+<div class="col-md-2"></div>
+<div class="col-md-8">
+
+  <button mat-mini-fab  color="primary"  (click)="add()" > <mat-icon matSuffix>add</mat-icon></button>
+  <h2> </h2>
+   <table class="table table-hover " id="manageAccountTable">
+    <thead>
+    <tr>
+      <th class="hidden">Sno.</th>
+      <th>Feeder Name</th>
+       <th>Substation Name</th>
+       <th>Action</th>
+    </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let feeder of feederList; let i = index">
+        <td class="hidden">{{i + 1}}</td>
+      <td>{{feeder.feederName}}</td>      
+      <td>{{feeder.substationId}}</td>   
+      
+      <td>
+          <div class="example-button-row">
+        <button mat-mini-fab color="primary" (click)="edit()" ><mat-icon matSuffix>edit</mat-icon></button>&nbsp;&nbsp;
+        <button mat-mini-fab  color="warn" > <mat-icon matSuffix>delete</mat-icon></button>
+        </div>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+
+</div>
+<div class="col-md-2"></div>
+</div>
+</mat-card-content>
+</mat-card>
+</div>
+
+<app-footer style=" position: fixed;bottom: 0;width: 100%;"></app-footer>

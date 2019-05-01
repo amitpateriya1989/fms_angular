@@ -5,8 +5,5 @@ export class Substation {
     powerTransformer: string;
     incomingLines: string;
     zoneId: string;
-    createdBy: string;
-    createdOn: string;
-    updatedBy: string;
-    updatedOn: string;
+   
 }

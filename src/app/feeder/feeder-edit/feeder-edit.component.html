@@ -1,0 +1,79 @@
+<app-header></app-header>
+<app-nav-bar></app-nav-bar>
+<br>
+<div class="container">
+  <div class="container;">
+
+    <div class="row">
+      <div class=" col-sm-2"></div>
+      <div class=" col-sm-8">
+
+
+        <mat-card class="my-card">
+          <form [formGroup]="feeder" (ngSubmit)="onSubmit()" autocomplete="off">
+
+
+
+            <mat-card-content>
+              <div class="row">
+                <div class=" col-sm-2"></div>
+                <div class="col-md-8">
+                  <div class="heading-line-top">
+
+                    <h4 class="heading-title" align="center">
+                      <b>Edit Feeder </b>
+                    </h4>
+
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                  <mat-form-field class="full-width">
+                    <mat-label>Substation Name</mat-label>
+                    <mat-select placeholder="Choose one" formControlName="substation" required>
+
+                      <mat-option value=""></mat-option>
+
+                    </mat-select>
+                    <mat-error *ngIf="feeder.controls.substation.hasError('required')">
+                      You must make a selection
+                    </mat-error>
+
+                  </mat-form-field><br>
+                  <mat-form-field class="full-width">
+                    <mat-label>Feeder Name</mat-label>
+                    <input matInput placeholder="Enter Substation Name" size="40" name="feederName" required
+                      formControlName="feederName">
+                    <mat-error *ngIf="feeder.controls.feederName.hasError('required')">
+                      Feeder Name is required
+                    </mat-error>
+
+                  </mat-form-field>
+                  <br>
+                 
+                  <div align="center">
+                    <mat-card-actions>
+
+                      <button mat-raised-button color="primary">Submit</button>&nbsp;&nbsp;&nbsp;
+
+                      <button mat-raised-button color="warn" type="button" (click)="reset()">Reset</button>&nbsp;&nbsp;&nbsp;
+
+                      <button mat-raised-button color="accent" type="button" (click)="back()">Back</button>
+
+                    </mat-card-actions>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<app-footer style=" position: fixed;bottom: 0;width: 100%;"></app-footer>

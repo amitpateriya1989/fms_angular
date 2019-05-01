@@ -1,27 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { HttpClientModule ,HTTP_INTERCEPTORS} from '@angular/common/http';
+import { FeederListComponent } from './feeder-list/feeder-list.component';
+import { FeederAddComponent } from './feeder-add/feeder-add.component';
+import { FeederEditComponent } from './feeder-edit/feeder-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatNativeDateModule,MatIconModule,MatButtonModule, MatTableModule,
   MatCheckboxModule, MatToolbarModule, MatCardModule,MatFormFieldModule,MatInputModule,
   MatRadioModule,MatListModule,MatSelectModule} from  '@angular/material';
-import {MatDatepickerModule} from  '@angular/material/datepicker';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+  import {MatDatepickerModule} from  '@angular/material/datepicker';
 import { LayoutModule } from '../layout/layout.module';
-import { RegisterComponent } from './register/register.component';
-import { ForgetPasswordComponent } from './forget-password/forget-password.component';
-import { NgxSpinnerModule } from 'ngx-spinner';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ForgetPasswordComponent],
+  declarations: [FeederListComponent, FeederAddComponent, FeederEditComponent],
   imports: [
-    NgxSpinnerModule,
     CommonModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     MatNativeDateModule,
     MatDatepickerModule,
@@ -36,7 +29,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatListModule,
     MatRadioModule,
     MatSelectModule,
-    LayoutModule
+    LayoutModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
-export class PreloginModule { }
+export class FeederModule { }

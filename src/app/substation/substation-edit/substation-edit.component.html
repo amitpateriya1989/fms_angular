@@ -10,7 +10,7 @@
   
   
                 <mat-card class="my-card">
-               <form [formGroup]="substationEdit"  autocomplete="off" >
+               <form [formGroup]="substationEdit" (ngSubmit)= "onSubmit()" autocomplete="off" >
   
             
   
@@ -32,19 +32,22 @@
                     <div class="col-sm-8">
                         <mat-form-field class="full-width">
                             <mat-label>Zone Name</mat-label>
-                            <mat-select placeholder="Choose one" formControlName="zoneCode" required>
+                            <mat-select [(ngModel)]="record.zoneId" formControlName="zoneCode" >
             
-                              <mat-option value="1">1</mat-option>
-                              <mat-option value="{{zone.id}}" *ngFor="let zone of zones">{{zone.name}}-{{zone.code}}</mat-option>
+                             <mat-option  *ngFor="let zone of zones" [value]="zone.id">{{zone.name}}-{{zone.code}}</mat-option>
                             </mat-select>
                             <mat-error *ngIf="substationEdit.controls.zoneCode.hasError('required')">
                               You must make a selection
                             </mat-error>
             
                         </mat-form-field><br>
+                       
+                        <input  matInput name="id"  [hidden]="true"  formControlName="id"  [(ngModel)]="record.id">
+                      
                         <mat-form-field class="full-width">
                             <mat-label>Substation Name</mat-label>
-                              <input  matInput  placeholder="Enter Substation Name" size="40" name="substationName" required formControlName="substationName">
+                              <input  matInput  placeholder="Enter Substation Name" size="40" name="substationName"   formControlName="substationName"  [(ngModel)]="record.substationName">
+                              
                               <mat-error *ngIf="substationEdit.controls.substationName.hasError('required')">
                                   Substation Name is required
                               </mat-error>
@@ -53,7 +56,7 @@
                           <br>
                           <mat-form-field class="full-width">
                               <mat-label>Substation Code</mat-label>
-                                <input  matInput  placeholder="Enter Substation Code" size="40" name="substationCode" required formControlName="substationCode">
+                                <input  matInput  placeholder="Enter Substation Code" size="40" name="substationCode"   formControlName="substationCode"  [(ngModel)]="record.substationCode">
                                 <mat-error *ngIf="substationEdit.controls.substationCode.hasError('required')">
                                     Substation Code is required
                                 </mat-error>
@@ -63,13 +66,12 @@
                                                       
                             <mat-form-field class="full-width">
                             <mat-label>Power Transformer</mat-label>
-                            <mat-select placeholder="Choose one" formControlName="powerTransformer" required>
-  
-                              <mat-option value="1">1</mat-option>
-                              <mat-option value="2">2</mat-option>
-                              <mat-option value="3">3</mat-option>
-                              <mat-option value="4">4</mat-option>
-                              <mat-option value="5">5</mat-option>
+                            <mat-select [(ngModel)]="record.powerTransformer" formControlName="powerTransformer" >
+                              <mat-option [value]="1">1</mat-option>
+                              <mat-option [value]="2">2</mat-option>
+                              <mat-option [value]="3">3</mat-option>
+                              <mat-option [value]="4">4</mat-option>
+                              <mat-option [value]="5">5</mat-option>
                             </mat-select>
                             <mat-error *ngIf="substationEdit.controls.powerTransformer.hasError('required')">
                               You must make a selection
@@ -79,15 +81,14 @@
                    <br>
                    <mat-form-field class="full-width">
                       <mat-label>Incomming Line</mat-label>
-                      <mat-select placeholder="Choose one" formControlName="incommingLine" required>
-
-                        <mat-option value="1">1</mat-option>
-                        <mat-option value="2">2</mat-option>
-                        <mat-option value="3">3</mat-option>
-                        <mat-option value="4">4</mat-option>
-                        <mat-option value="5">5</mat-option>
+                      <mat-select  [(ngModel)]="record.incomingLines" formControlName="incomingLines" >
+                         <mat-option [value]="1">1</mat-option>
+                        <mat-option [value]="2">2</mat-option>
+                        <mat-option [value]="3">3</mat-option>
+                        <mat-option [value]="4">4</mat-option>
+                        <mat-option [value]="5">5</mat-option>
                       </mat-select>
-                      <mat-error *ngIf="substationEdit.controls.incommingLine.hasError('required')">
+                      <mat-error *ngIf="substationEdit.controls.incomingLines.hasError('required')">
                         You must make a selection
                       </mat-error>
 
@@ -99,7 +100,7 @@
   
                   <button mat-raised-button color="primary"  >Submit</button>&nbsp;&nbsp;&nbsp;
   
-                    <button mat-raised-button  color="warn"  type="button" >Reset</button>&nbsp;&nbsp;&nbsp;
+                    <button mat-raised-button  color="warn"  type="button" (click)="reset()">Reset</button>&nbsp;&nbsp;&nbsp;
   
                     <button mat-raised-button  color="accent"  type="button"  (click)="back()" >Back</button>
   

@@ -10,7 +10,7 @@
   
   
                 <mat-card class="my-card">
-               <form [formGroup]="substation"  autocomplete="off" >
+               <form [formGroup]="substation" (ngSubmit)= "onSubmit()" autocomplete="off" >
   
             
   
@@ -32,12 +32,12 @@
                     <div class="col-sm-8">
                         <mat-form-field class="full-width">
                             <mat-label>Zone Name</mat-label>
-                            <mat-select placeholder="Choose one" formControlName="zoneCode" required>
+                            <mat-select placeholder="Choose one" formControlName="zoneId" required>
             
                               <mat-option value="{{zone.id}}" *ngFor="let zone of zones">{{zone.name}}-{{zone.code}}</mat-option>
                              
                             </mat-select>
-                            <mat-error *ngIf="substation.controls.zoneCode.hasError('required')">
+                            <mat-error *ngIf="substation.controls.zoneId.hasError('required')">
                               You must make a selection
                             </mat-error>
             
@@ -79,7 +79,7 @@
                    <br>
                    <mat-form-field class="full-width">
                       <mat-label>Incomming Line</mat-label>
-                      <mat-select placeholder="Choose one" formControlName="incommingLine" required (ngModelChange)="addFeeder()">
+                      <mat-select placeholder="Choose one" formControlName="incomingLines" required (ngModelChange)="addFeederIncomingLines()">
 
                         <mat-option value="1">1</mat-option>
                         <mat-option value="2">2</mat-option>
@@ -87,20 +87,20 @@
                         <mat-option value="4">4</mat-option>
                         <mat-option value="5">5</mat-option>
                       </mat-select>
-                      <mat-error *ngIf="substation.controls.incommingLine.hasError('required')">
+                      <mat-error *ngIf="substation.controls.incomingLines.hasError('required')">
                         You must make a selection
                       </mat-error>
 
                   </mat-form-field>
              <br>
-             <div formGroupName="itemRows">
-              <ng-container *ngIf='substation.controls.itemRows!=null'>
-                  <div *ngFor="let itemrow of substation.controls.itemRows.controls;let i=index" [formGroupName]="i">
+             <div formGroupName="substationFeederInterface">
+              <ng-container *ngIf='substation.controls.substationFeederInterface!=null'>
+                  <div *ngFor="let substationFeeder of substation.controls.substationFeederInterface.controls;let i=index" [formGroupName]="i">
                       <mat-form-field class="full-width" *ngIf="addLines">
                           <mat-label>Feeder Name</mat-label>
 
-                            <input  matInput  placeholder="Enter Feeder Name" name="name" required 
-                            formControlName="name" >
+                            <input  matInput  placeholder="Enter Feeder Name" name="substationFeederName" required 
+                            formControlName="substationFeederName" >
                          
                        </mat-form-field>
                       
@@ -113,7 +113,7 @@
   
                   <button mat-raised-button color="primary"  >Submit</button>&nbsp;&nbsp;&nbsp;
   
-                    <button mat-raised-button  color="warn"  type="button" >Reset</button>&nbsp;&nbsp;&nbsp;
+                    <button mat-raised-button  color="warn"  type="button"  (click)="reset()">Reset</button>&nbsp;&nbsp;&nbsp;
   
                     <button mat-raised-button  color="accent"  type="button"  (click)="back()" >Back</button>
   
